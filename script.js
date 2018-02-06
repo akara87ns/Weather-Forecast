@@ -33,23 +33,21 @@ function searchCurrentWeather() {
             var wcd = JSON.parse(this.responseText);
             console.log(wcd);
             var output = "";
-            output += 
-                "<div class='currentData'>" + 
-                    "<h2>" + wcd.name + "</h2>" +
-                    "<div class='currentRow'" + 
-                        "<div>" + 
-                            "<img src='http://openweathermap.org/img/w/" + wcd.weather[0].icon + ".png'>" + 
-                            "<p class='weatherDescription'>" + wcd.weather[0].description + "</p>" + 
-                        "</div>" + 
-                        "<div>" + 
-                            "<p><span class='big'>" + Math.round(wcd.main.temp - 273.15) + "°<span> C</p>" + 
-                        "</div>" +
-                        "<div>" + 
-                            "<p>Humidity: " + wcd.main.humidity + "%</p>" +
-                            "<p>Pressure: " + wcd.main.pressure + " hPa</p>" +
-                            "<p>Wind: " + Math.round(wcd.wind.speed * 1.61) + "kmh</p>" +
-                        "</div>" +
-                "</div>";
+            output += `
+                <div class='currentData'> 
+                    <h2>${wcd.name}</h2>
+                    <div class='currentRow'>
+                        <div>                                                       <img src='http://openweathermap.org/img/w/${wcd.weather[0].icon}.png'>  
+                            <p class='weatherDescription'> ${wcd.weather[0].description}</p>                           
+                        </div> 
+                            <p><span class='big'> ${Math.round(wcd.main.temp - 273.15)}°<span> C</p>                   
+                    </div>
+                    <div> 
+                        <p>Humidity: ${wcd.main.humidity}%</p>
+                        <p>Pressure: ${wcd.main.pressure} hPa</p>
+                        <p>Wind: ${Math.round(wcd.wind.speed * 1.61)} kmh</p>
+                    </div>
+                </div>`;
 
             outputHTML.innerHTML = output;
         }
@@ -75,21 +73,20 @@ function searchWeatherForecast() {
             console.log(wfd);
 
             var output = "";
-            output += 
-                "<h3>7 days forecast</h3>" +
-                "<div class='daysForecast'>"; 
+            output += `
+                <h3>7 days forecast</h3>
+                <div class='daysForecast'>`; 
 
                 for (var i = 0; i < wfd.list.length; i++) {
                     output += 
-                        "<div>" + 
-                            "<p>" + getDate(wfd.list[i].dt) + "</p>" + 
-                            "<img src='http://openweathermap.org/img/w/" + wfd.list[i].weather[0].icon + ".png'>" + 
-                            "<p><span class='medium'>" + Math.round(wfd.list[i].temp.max - 273.15) + "° </span>" + Math.round(wfd.list[i].temp.min - 273.15) + "°</p>" + 
-                            "<p class='weatherDescription'>" + wfd.list[i].weather[0].description + "</p>" + 
-                        "</div>";
-
+                    `<div> 
+                        <p>${getDate(wfd.list[i].dt)}</p>
+                        <img src='http://openweathermap.org/img/w/${wfd.list[i].weather[0].icon}.png'>
+                        <p><span class='medium'> ${Math.round(wfd.list[i].temp.max - 273.15)}° </span> ${Math.round(wfd.list[i].temp.min - 273.15)}°</p> 
+                        <p class='weatherDescription'> ${wfd.list[i].weather[0].description}</p> 
+                    </div>`;
                 }
-            output += "</div>"; 
+            output += `</div>`; 
 
             outputHTML.innerHTML += output;
         } else {
