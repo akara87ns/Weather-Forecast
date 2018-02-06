@@ -15,6 +15,13 @@ document.getElementById("btn").addEventListener("click", function() {
     searchCurrentWeather(), searchWeatherForecast()
 });
 
+//Turning seconds into miliseconds, and into actual date in the end
+function getDate(date) {
+    var date = new Date(date*1000);
+    return date.toDateString();
+}
+
+//AJAX function for getting current weather data
 function searchCurrentWeather() {
     var xhr = new XMLHttpRequest();
 
@@ -32,10 +39,10 @@ function searchCurrentWeather() {
                     "<div class='currentRow'" + 
                         "<div>" + 
                             "<img src='http://openweathermap.org/img/w/" + wcd.weather[0].icon + ".png'>" + 
-                            "<p>" + wcd.weather[0].description + "</p>" + 
+                            "<p class='weatherDescription'>" + wcd.weather[0].description + "</p>" + 
                         "</div>" + 
                         "<div>" + 
-                            "<p><span>" + Math.round(wcd.main.temp - 273.15) + "<span> C</p>" + 
+                            "<p><span class='big'>" + Math.round(wcd.main.temp - 273.15) + "°<span> C</p>" + 
                         "</div>" +
                         "<div>" + 
                             "<p>Humidity: " + wcd.main.humidity + "%</p>" +
@@ -54,6 +61,7 @@ function searchCurrentWeather() {
     xhr.send();
 }
 
+//AJAX function for getting 7 day weather forecast
 function searchWeatherForecast() {
 
     var xhr = new XMLHttpRequest();
@@ -65,6 +73,25 @@ function searchWeatherForecast() {
             //wfd = weather forecast data
             var wfd = JSON.parse(this.responseText);
             console.log(wfd);
+
+            var output = "";
+            output += 
+                "<h3>7 days forecast</h3>" +
+                "<div class='daysForecast'>"; 
+
+                for (var i = 0; i < wfd.list.length; i++) {
+                    output += 
+                        "<div>" + 
+                            "<p>" + getDate(wfd.list[i].dt) + "</p>" + 
+                            "<img src='http://openweathermap.org/img/w/" + wfd.list[i].weather[0].icon + ".png'>" + 
+                            "<p><span class='medium'>" + Math.round(wfd.list[i].temp.max - 273.15) + "° </span>" + Math.round(wfd.list[i].temp.min - 273.15) + "°</p>" + 
+                            "<p class='weatherDescription'>" + wfd.list[i].weather[0].description + "</p>" + 
+                        "</div>";
+
+                }
+            output += "</div>"; 
+
+            outputHTML.innerHTML += output;
         } else {
             outputHTML.innerHTML = "<p>City not found. Try to spell name of the city in english language</p>"; 
         }
