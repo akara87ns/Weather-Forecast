@@ -1,0 +1,143 @@
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Raleway; }
+
+.searchGroup::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.4;
+  z-index: -1;
+  background-image: url(images/bkg.jpeg);
+  background-position: 50% 0;
+  background-size: cover; }
+
+.searchGroup {
+  width: 50%;
+  margin: 0 auto;
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  margin-top: 2em;
+  grid-gap: 0.8em; }
+  .searchGroup input {
+    width: 50%;
+    padding: 0.4em;
+    border-radius: 10px;
+    border: 2px solid rgba(52, 151, 249, 0.8); }
+    .searchGroup input:focus {
+      border: 2px solid rgba(4, 74, 144, 0.8); }
+  .searchGroup button {
+    width: 25%;
+    padding: 0.8em;
+    border-radius: 10px;
+    text-transform: uppercase;
+    background: rgba(52, 151, 249, 0.8);
+    border: none;
+    cursor: pointer;
+    color: white;
+    letter-spacing: 0.1em; }
+    .searchGroup button:hover {
+      background: rgba(4, 74, 144, 0.8); }
+
+.currentData {
+  width: 50%;
+  margin: 0 auto;
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  background: rgba(201, 227, 253, 0.8);
+  padding: 1em;
+  margin-top: 1em;
+  border-radius: 1em;
+  box-shadow: 0 4px 6px -2px gray; }
+  .currentData h2 {
+    letter-spacing: 0.25em;
+    text-transform: uppercase; }
+
+.weatherDescription {
+  text-transform: capitalize;
+  text-align: center;
+  font-size: 1.1em; }
+
+.currentRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1em;
+  align-items: center;
+  align-content: center; }
+  .currentRow .parameters {
+    font-size: 0.9em;
+    text-align: right; }
+    .currentRow .parameters span {
+      font-size: 1.3em; }
+  .currentRow img {
+    width: 100px; }
+  .currentRow .big {
+    font-size: 4em; }
+
+h3 {
+  text-transform: capitalize;
+  margin-left: 1em; }
+
+.daysForecast {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-gap: 0.4em;
+  text-align: center; }
+  .daysForecast > div {
+    box-shadow: 0 4px 4px -2px gray; }
+  .daysForecast > div:nth-child(odd) {
+    background: rgba(225, 240, 254, 0.8); }
+  .daysForecast > div:nth-child(even) {
+    background: rgba(176, 214, 253, 0.8); }
+  .daysForecast .medium {
+    font-size: 2.2em; }
+
+@media (max-width: 900px) {
+  .searchGroup {
+    width: 94%;
+    margin-top: 1em;
+    grid-gap: 0.4em; }
+    .searchGroup button {
+      padding: 0.4em; }
+    .searchGroup label {
+      font-size: 0.8em; }
+
+  .currentData {
+    width: 90%;
+    padding: 0.5em; }
+    .currentData h2 {
+      font-size: 1em; }
+
+  .weatherDescription {
+    font-size: 1em; }
+
+  .currentRow {
+    grid-gap: 0.5em; }
+    .currentRow .parameters {
+      font-size: 0.7em; }
+      .currentRow .parameters span {
+        font-size: 1em; }
+    .currentRow img {
+      width: 70px; }
+    .currentRow .big {
+      font-size: 2em; }
+
+  h3 {
+    font-size: 0.8em; }
+
+  .daysForecast {
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 0.1em; }
+    .daysForecast p {
+      font-size: 0.7em;
+      margin: 0.15em 0; }
+    .daysForecast .medium {
+      font-size: 1.3em; } }
+
+/*# sourceMappingURL=style.css.map */

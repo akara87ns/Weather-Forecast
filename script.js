@@ -21,6 +21,16 @@ function getDate(date) {
     return date.toDateString();
 }
 
+//Clearing input field on page refresh and selecting text on focus
+city.addEventListener("focus", function() {
+    this.select();
+});
+
+window.onload = function() {
+    city.value = "";
+}
+
+
 //AJAX function for getting current weather data
 function searchCurrentWeather() {
     var xhr = new XMLHttpRequest();
@@ -36,17 +46,15 @@ function searchCurrentWeather() {
             output += `
                 <div class='currentData'> 
                     <h2>${wcd.name}</h2>
-                    <div class='currentRow'>
-                        <div>                                                       <img src='http://openweathermap.org/img/w/${wcd.weather[0].icon}.png'>  
-                            <p class='weatherDescription'> ${wcd.weather[0].description}</p>                           
-                        </div> 
-                            <p><span class='big'> ${Math.round(wcd.main.temp - 273.15)}°<span> C</p>                   
+                    <div class='currentRow'>                                        <img src='http://openweathermap.org/img/w/${wcd.weather[0].icon}.png'>                  
+                        <p><span class='big'> ${Math.round(wcd.main.temp - 273.15)}°<span> C</p>  
+                        <div class='parameters'> 
+                            <p>Humidity: <span>${wcd.main.humidity}%</span></p>
+                            <p>Pressure: <span>${wcd.main.pressure} hPa</span></p>
+                            <p>Wind: <span>${Math.round(wcd.wind.speed * 1.61)} kmh</span></p>
+                        </div>                 
                     </div>
-                    <div> 
-                        <p>Humidity: ${wcd.main.humidity}%</p>
-                        <p>Pressure: ${wcd.main.pressure} hPa</p>
-                        <p>Wind: ${Math.round(wcd.wind.speed * 1.61)} kmh</p>
-                    </div>
+                    <p class='weatherDescription'>${wcd.weather[0].description}</p> 
                 </div>`;
 
             outputHTML.innerHTML = output;
