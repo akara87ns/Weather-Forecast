@@ -46,7 +46,8 @@ function searchCurrentWeather() {
             output += `
                 <div class='currentData'> 
                     <h2>${wcd.name}</h2>
-                    <div class='currentRow'>                                        <img src='http://openweathermap.org/img/w/${wcd.weather[0].icon}.png'>                  
+                    <div class='currentRow'>                                        
+                    <img src='http://openweathermap.org/img/w/${wcd.weather[0].icon}.png'>
                         <p><span class='big'> ${Math.round(wcd.main.temp - 273.15)}°<span> C</p>  
                         <div class='parameters'> 
                             <p>Humidity: <span>${wcd.main.humidity}%</span></p>
